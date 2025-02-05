@@ -1,6 +1,8 @@
 package dev.lazxnet.GestorCom_API.model;
 
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -8,11 +10,16 @@ import java.util.Date;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "ID unico del comentario", example = "1")
     private Long id;
 
+    @Schema(description = "Contenido del Comentario", example = "¡Este es un comentario de ejemplo!")
     private String content;
+
+    @Schema(description = "Autor del comentario", example = "Juan Perez")
     private String author;
 
+    @Schema(description = "Fecha y Hora del Comentario")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
