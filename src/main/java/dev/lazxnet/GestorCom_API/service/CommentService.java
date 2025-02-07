@@ -13,10 +13,13 @@ public class CommentService {
     @Autowired
     private CommentRepository commentRepository;
 
+
     // Obtener todos los comentarios
     public List<Comment> getAllComments() {
+
         return commentRepository.findAll();
     }
+
 
     // Crear un comentario
     public Comment createComment(Comment comment) {
@@ -26,6 +29,7 @@ public class CommentService {
 
     // Obtener comentario por ID
     public Comment getCommentById(Long id) {
+
         return commentRepository.findById(id).orElse(null);
     }
 
@@ -42,6 +46,7 @@ public class CommentService {
 
     // Eliminar un comentario
     public void deleteComment(Long id) {
+
         commentRepository.deleteById(id);
     }
 }
