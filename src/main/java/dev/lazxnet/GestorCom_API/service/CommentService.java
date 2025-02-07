@@ -3,7 +3,10 @@ package dev.lazxnet.GestorCom_API.service;
 import dev.lazxnet.GestorCom_API.model.Comment;
 import dev.lazxnet.GestorCom_API.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.Date;
 import java.util.List;
 
@@ -30,7 +33,9 @@ public class CommentService {
     // Obtener comentario por ID
     public Comment getCommentById(Long id) {
 
-        return commentRepository.findById(id).orElse(null);
+        return commentRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Comentario no encontrado"));
     }
 
     // Actualizar un comentario
