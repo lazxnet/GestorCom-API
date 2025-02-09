@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Comment {
+public class Comment extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(description = "ID unico del comentario", example = "1")
@@ -19,11 +19,8 @@ public class Comment {
     @Schema(description = "Autor del comentario", example = "Juan Perez")
     private String author;
 
-    @Schema(description = "Fecha y Hora del Comentario")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
 
-    // Getters y Setters
+    // Getters y Setters (los de Auditable ya están heredados)
     public Long getId() {
         return id;
     }
@@ -46,13 +43,5 @@ public class Comment {
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
     }
 }
