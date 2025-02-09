@@ -1,5 +1,6 @@
 package dev.lazxnet.GestorCom_API.controller;
 
+import dev.lazxnet.GestorCom_API.Dtos.CommentRequest;
 import dev.lazxnet.GestorCom_API.model.Comment;
 import dev.lazxnet.GestorCom_API.service.CommentService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -7,6 +8,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -29,7 +32,10 @@ public class CommentController {
 
     @Operation(summary = "Crear nuevo comentario")
     @PostMapping
-    public Comment createComment(@RequestBody Comment comment) {
+    public Comment createComment(@RequestBody CommentRequest commentRequest) {
+        Comment comment = new Comment();
+        comment.setContent(comment.getContent());
+        comment.setAuthor(comment.getAuthor());
         return commentService.createComment(comment);
     }
 
@@ -48,8 +54,15 @@ public class CommentController {
 
     @Operation(summary = "Editar un comentario")
     @PutMapping("/{id}")
-    public Comment updateComment(@PathVariable Long id, @RequestBody Comment commentDetails) {
-        return commentService.updateComment(id, commentDetails);
+    public Comment updateComment(@PathVariable Long id, @Valid @RequestBody CommentRequest commentRequest) {
+        Comment comment = commentService.getCommentById(id);
+
+        if (comment != null){
+            comment.setContent(commentRequest.getContent());
+            comment.setAuthor(commentRequest.getAuthor());
+            return commentService.updateComment(id, comment);
+        }
+        return null;
     }
 
 
