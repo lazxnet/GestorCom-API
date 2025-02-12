@@ -14,6 +14,6 @@ public class AuditConfig {
     @Bean
     public AuditorAware<String> auditorProvider() {
         // En un entorno real, esto debería devolver el usuario autenticado (ej: con Spring Security)
-        return () -> Optional.of("system"); // Usuario por defecto
+        return () -> Optional.of("system");
     }
 }
