@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -20,6 +21,15 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
+    //inyeccion por constructor
+    /*public CommentController(CommentService commentService){
+        this.commentService = commentService;
+    }*/
+
+    @GetMapping("/")
+    public RedirectView redirectoSwagger(){
+        return new RedirectView("/swagger-ui/index.html");
+    }
 
 
     @Operation(summary = "Obtener todos los comentarios")
