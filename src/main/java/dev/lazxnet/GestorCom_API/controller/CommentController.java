@@ -40,8 +40,8 @@ public class CommentController {
     @PostMapping
     public Comment createComment(@RequestBody CommentRequest commentRequest) {
         Comment comment = new Comment();
-        comment.setContent(comment.getContent());
-        comment.setAuthor(comment.getAuthor());
+        comment.setContent(commentRequest.getContent());
+        comment.setAuthor(commentRequest.getAuthor());
         return commentService.createComment(comment);
     }
 

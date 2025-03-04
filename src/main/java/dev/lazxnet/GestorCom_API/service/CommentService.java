@@ -26,7 +26,7 @@ public class CommentService {
 
     // Crear un comentario
     public Comment createComment(Comment comment) {
-        comment.setCreatedAt(new Date()); // Asignar la fecha actual al crear el comentario
+        //comment.setCreatedAt(new Date()); // Asignar la fecha actual al crear el comentario
         return commentRepository.save(comment);
     }
 
