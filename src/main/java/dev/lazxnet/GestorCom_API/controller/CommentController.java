@@ -26,10 +26,6 @@ public class CommentController {
         this.commentService = commentService;
     }*/
 
-    @GetMapping("/")
-    public RedirectView redirectoSwagger(){
-        return new RedirectView("/swagger-ui/index.html");
-    }
 
 
     @Operation(summary = "Obtener todos los comentarios")
