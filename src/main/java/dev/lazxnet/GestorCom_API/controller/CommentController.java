@@ -18,13 +18,13 @@ import java.util.List;
 @Tag(name = "GestorCom-API", description = "API para gestionar comentarios")
 public class CommentController {
 
-    @Autowired
+    
     private CommentService commentService;
 
     //inyeccion por constructor
-    /*public CommentController(CommentService commentService){
+    public CommentController(CommentService commentService){
         this.commentService = commentService;
-    }*/
+    }
 
 
 
