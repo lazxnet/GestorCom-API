@@ -18,7 +18,7 @@ import java.util.List;
 @Tag(name = "GestorCom-API", description = "API para gestionar comentarios")
 public class CommentController {
 
-    
+
     private CommentService commentService;
 
     //inyeccion por constructor
@@ -28,7 +28,10 @@ public class CommentController {
 
 
 
-    @Operation(summary = "Obtener todos los comentarios")
+    @Operation(summary = "Obtener todos los comentarios", responses = {
+            @ApiResponse(responseCode = "201", description = "Comentarios encontrados"),
+            @ApiResponse(responseCode = "400", description = "Error al encontrar los comentarios")
+    })
     @GetMapping
     public List<Comment> getAllComments() {
         return commentService.getAllComments();
@@ -36,7 +39,10 @@ public class CommentController {
 
 
 
-    @Operation(summary = "Crear nuevo comentario")
+    @Operation(summary = "Crear comentario", responses = {
+            @ApiResponse(responseCode = "201", description = "Comentario creado"),
+            @ApiResponse(responseCode = "400", description = "Datos inválidos")
+    })
     @PostMapping
     public Comment createComment(@RequestBody CommentRequest commentRequest) {
         Comment comment = new Comment();
